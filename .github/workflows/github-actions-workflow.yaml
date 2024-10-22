@@ -9,24 +9,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup .NET Framework 4.5.2
-        run: |
-          # Verify .NET Framework installation
-          & "C:\Program Files (x86)\Microsoft.NET\SDK\4.5.2\bin\dotnet" --info
-
       - name: Restore NuGet packages
         run: |
-          nuget restore PSCIDemo.sln
+          nuget restore YourSolution.sln
 
       - name: Build Solution
         run: |
-          msbuild PSCIDemo.sln /p:Configuration=Release
-
-      - name: Run Tests
-        run: |
-          # Change directory to the test project if necessary
-          # Example for an MSTest project:
-          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\mstest.exe" /testcontainer:YourTestProject.dll
+          msbuild YourSolution.sln /p:Configuration=Release
+          
   Example-Actions-Job:
     name: Exploring GitHub Actions
     runs-on: windows-latest
