@@ -3,6 +3,20 @@ on:
   push:     
     branches: [ "develop" ]
 jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Restore NuGet packages
+        run: |
+          nuget restore WebApplication1/WebApplication1.sln
+
+      - name: Build Solution
+        run: |
+          msbuild WebApplication1/WebApplication1.sln /p:Configuration=Release
           
   Example-Actions-Job:
     name: Exploring GitHub Actions
