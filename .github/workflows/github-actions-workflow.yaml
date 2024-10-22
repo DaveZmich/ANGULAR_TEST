@@ -8,18 +8,18 @@ jobs:
     steps:
       - name: List files in the repository
         run: |
-          ls "${{ github.workspace }}\WebApplication1\"  
+          ls ${{ github.workspace }}  
     
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Restore NuGet packages
         run: |
-          nuget restore "Webapplication1/WebApplication1.sln"
+          nuget restore WebApplication1.sln
 
       - name: Build Solution
         run: |
-          msbuild "Webapplication1/WebApplication1.sl"n /p:Configuration=Release
+          msbuild Webapplication1/WebApplication1.sln /p:Configuration=Release
           
   Example-Actions-Job:
     name: Exploring GitHub Actions
