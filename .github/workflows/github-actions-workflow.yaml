@@ -2,6 +2,7 @@ name: Github Actions Demo
 on: push
 jobs:
 
+
   build:
     runs-on: windows-latest
 
@@ -46,12 +47,8 @@ jobs:
       
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
-      
-      - name: Setup dotnet on runner
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '3.x'
+          ls ${{ github.workspace }}     
+
       
       - name: Display dotnet version
         run: dotnet --version
