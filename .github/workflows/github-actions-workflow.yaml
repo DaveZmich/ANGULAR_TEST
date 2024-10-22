@@ -6,6 +6,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}\WebApplication1\   
+    
       - name: Checkout code
         uses: actions/checkout@v2
 
