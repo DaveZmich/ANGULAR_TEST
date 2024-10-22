@@ -1,22 +1,32 @@
 name: Github Actions Demo
 on: push
 jobs:
-  build:
 
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Framework 4.5.2
+        run: |
+          # Verify .NET Framework installation
+          & "C:\Program Files (x86)\Microsoft.NET\SDK\4.5.2\bin\dotnet" --info
+
+      - name: Restore NuGet packages
+        run: |
+          nuget restore PSCIDemo.sln
+
+      - name: Build Solution
+        run: |
+          msbuild PSCIDemo.sln /p:Configuration=Release
+
+      - name: Run Tests
+        run: |
+          # Change directory to the test project if necessary
+          # Example for an MSTest project:
+          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\mstest.exe" /testcontainer:YourTestProject.dll
   Example-Actions-Job:
     name: Exploring GitHub Actions
     runs-on: windows-latest
