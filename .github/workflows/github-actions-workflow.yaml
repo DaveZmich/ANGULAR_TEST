@@ -11,11 +11,11 @@ jobs:
 
       - name: Restore NuGet packages
         run: |
-          nuget restore WebApplication1/WebApplication1.sln
+          nuget restore ${{ github.workspace }}/WebApplication1.sln
 
       - name: Build Solution
         run: |
-          msbuild WebApplication1/WebApplication1.sln /p:Configuration=Release
+          msbuild ${{ github.workspace }}/WebApplication1.sln /p:Configuration=Release
           
   Example-Actions-Job:
     name: Exploring GitHub Actions
